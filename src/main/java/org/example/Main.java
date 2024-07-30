@@ -12,7 +12,7 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) throws IOException {
         System.out.println("Hello World!");
-        // javaAssignment();
+        javaAssignment();
     }
 
     public static void javaAssignment() throws IOException {
@@ -30,9 +30,9 @@ public class Main {
 
 
         MultipartFile firstFile = myMultipartRequest.getMultipartFile("text1");
-        firstFile.store("c:/output/first.txt");
+        firstFile.store("src/main/java/org/example/output/first.txt");
 
         MultipartFile secondFile = myMultipartRequest.getMultipartFile("text2");
-        secondFile.store("c:/output/second.txt");
+        secondFile.store("src/main/java/org/example/output/second.txt");
     }
 }
