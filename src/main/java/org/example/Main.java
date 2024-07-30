@@ -11,9 +11,14 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        System.out.println("Hello World!");
+        // javaAssignment();
+    }
+
+    public static void javaAssignment() throws IOException {
 
         String url = "https://www.ebrainsoft.com/?id=kmc774&favorite=001&favorite=002";
-        File multipartData = new File("C:\\Users\\jinju\\OneDrive\\바탕 화면\\request-dummy.txt");
+        File multipartData = new File("src/main/java/org/example/ref/request-dummy.txt");
 
         QueryParser queryParser = new QueryParser();
         MyRequest myRequest = queryParser.parse(url);
@@ -29,7 +34,5 @@ public class Main {
 
         MultipartFile secondFile = myMultipartRequest.getMultipartFile("text2");
         secondFile.store("c:/output/second.txt");
-
-
     }
 }
