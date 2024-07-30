@@ -8,24 +8,30 @@ import java.util.Map;
 
 public class MultipartParser {
 
-    // ?? 왜 static?
-    public static MyMultipartRequest parse(File file) throws IOException {
+    /**
+     * <p>주어진 파일의 내용을 한 줄씩 읽어 HTTP 요청의 메서드, URI, HTTP 버전, 헤더 및 바디를 파싱합니다.
+     * 헤더 정보는 {@link MyMultipartRequest} 객체의 헤더 맵에 저장되고,
+     * boundary 를 기준으로 분리된 각 파트는 {@link MyMultipartRequest.Part} 객체로 저장됩니다.</p>
+     *
+     * @param file 파싱할 파일 객체
+     * @return 파싱된 HTTP 요청 정보를 담은 {@link MyMultipartRequest} 객체
+     * @throws IOException 파일을 읽는 동안 오류가 발생한 경우
+     */
+    public MyMultipartRequest parse(File file) throws IOException {
 
         MyMultipartRequest request = new MyMultipartRequest();
 
-        // 파일의 모든 줄을 읽어 리스트에 저장
-        // ? TO.PATH 는 뭐여
         List<String> lines = Files.readAllLines(file.toPath());
 
-        // file 의 첫줄에서 HTTP Method, URI, HTTP 버전 저장
+        // file 의 첫줄(lines[0])에서 HTTP Method, URI, HTTP 버전 저장
         String httpRequestLine = lines.get(0);
         request.setMethod(httpRequestLine.split(" ")[0]);
         request.setUri(httpRequestLine.split(" ")[1]);
         request.setHttpVersion(httpRequestLine.split(" ")[2]);
 
-        // 헤더 분리해서(파싱) 헤더 Map 에 저장
-        int lineNum = 1;  // lines.get(0) 은 이미 저장함
-        while (!lines.get(lineNum).isEmpty()) { // ? blank 는 안되나? 그리고 for 문보다 이게 낫나?
+        // lines[1] 부터 헤더 데이터. 각각 분리해서(파싱) 헤더 Map 에 저장
+        int lineNum = 1;
+        while (!lines.get(lineNum).isEmpty()) {
             String headerLine = lines.get(lineNum);
             String[] header = headerLine.split(": ");
             request.setHeaders(header[0], header[1]);
@@ -40,6 +46,7 @@ public class MultipartParser {
         lineNum++;
         String boundary = "--" + request.getBoundary();
 
+        // boundary 를 기준으로 각 파일데이터 저장
         while (lines.get(lineNum).startsWith(boundary)) {
             lineNum++;
             if (lineNum >= lines.size()) {
@@ -62,10 +69,10 @@ public class MultipartParser {
             lineNum++;
         }
 
-
         return request;
     }
 
+    // 결과 확인을 위한 메소드
     public static void printMultipartParserRequest(MyMultipartRequest request) {
         System.out.println("2번 --------------------------------------------------------------------------------------");
         System.out.println();

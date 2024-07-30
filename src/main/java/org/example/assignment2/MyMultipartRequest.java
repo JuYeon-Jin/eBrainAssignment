@@ -16,7 +16,10 @@ public class MyMultipartRequest {
     private Map<String, String> headers = new HashMap<>();  // 헤더를 저장하는 맵 (키: 헤더 이름, 값: 헤더 값)
     private List<Part> parts = new ArrayList<>();  // 요청의 각 파트를 저장하는 리스트
 
-    // // 요청의 multipart/form-data의 각 파트  ?? 왜 static?
+    // 요청의 multipart/form-data의 각 파트
+    // static 인 이유 : 'Part' 클래스가 MyMultipartRequest 클래스의 인스턴스에 종속되지 않기 때문
+    //                 MyMultipartRequest 클래스의 내부 정적 클래스이지만 static 이기 때문에
+    //                 Part 클래스의 인스턴스를 생성하기 위해 MyMultipartRequest 클래스의 인스턴스가 필요하지 않다.
     public static class Part {
         private String contentDisposition;  // Content-Disposition 값
         private String name;  // name 값

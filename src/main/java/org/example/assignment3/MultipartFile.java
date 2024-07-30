@@ -6,15 +6,6 @@ import java.io.IOException;
 
 public class MultipartFile {
 
-    /*
-멀티파트 파일 읽어서 파일로 저장
-<예시>
-    MultipartFile firstFile = myMultipartRequest.getMultipartFile("text1");
-    firstFile.store("c:/output/first.txt);
-
-    MultipartFile secondFile = myMultipartRequest.getMultipartFile("text2");
-    secondFile.store("c:/output/second.txt);
-        * */
     private String fileName;
     private String contentType;
     private byte[] content;
@@ -37,6 +28,13 @@ public class MultipartFile {
         return content;
     }
 
+    /**
+     * <p>FileOutputStream 을 사용하여 주어진 경로에 파일을 저장합니다.
+     * 파일의 부모 디렉토리가 존재하지 않으면 해당 디렉토리를 생성한 후 파일을 저장합니다.</p>
+     *
+     * @param path 저장할 파일의 경로
+     * @throws IOException 파일을 저장하는 동안 오류가 발생한 경우
+     */
     public void store(String path) throws IOException {
         File file = new File(path);
         File dir = file.getParentFile();

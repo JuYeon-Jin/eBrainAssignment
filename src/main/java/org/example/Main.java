@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.assignment1.MyRequest;
+import org.example.assignment1.QueryParser;
 import org.example.assignment2.MultipartParser;
 import org.example.assignment2.MyMultipartRequest;
 import org.example.assignment3.MultipartFile;
@@ -13,9 +15,9 @@ public class Main {
         String url = "https://www.ebrainsoft.com/?id=kmc774&favorite=001&favorite=002";
         File multipartData = new File("C:\\Users\\jinju\\OneDrive\\바탕 화면\\request-dummy.txt");
 
-        /*QueryParser queryParser = new QueryParser();
+        QueryParser queryParser = new QueryParser();
         MyRequest myRequest = queryParser.parse(url);
-        queryParser.printRequest(myRequest);*/
+        queryParser.printRequest(myRequest);
 
         MultipartParser multipartParser = new MultipartParser();
         MyMultipartRequest myMultipartRequest = multipartParser.parse(multipartData);
