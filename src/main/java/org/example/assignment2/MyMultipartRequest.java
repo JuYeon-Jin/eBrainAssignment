@@ -25,7 +25,7 @@ public class MyMultipartRequest {
         private String name;  // name 값
         private String filename;  // filename 값 (파일 파트인 경우)
         private String contentType;  // Content-Type 값
-        private String content;  // 파트의 실제 콘텐츠 (문자열)
+        private String content;  // 파트의 실제 콘텐츠 (문자열이 아닐 수도 있다.)
 
         // Part 클래스의 생성자
         public Part(String contentDisposition

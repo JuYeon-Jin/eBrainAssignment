@@ -11,21 +11,24 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        System.out.println("Hello World!");
+        // System.out.println("Hello World!");
         javaAssignment();
     }
 
     public static void javaAssignment() throws IOException {
 
-        String url = "https://www.ebrainsoft.com/?id=kmc774&favorite=001&favorite=002";
+        // value 에 & 가 들어갈 경우
+        String url = "https://www.ebrainsoft.com/?id=kmc774&favorite=001&favorite=002&favorite=004";
         File multipartData = new File("src/main/java/org/example/ref/request-dummy.txt");
-
+/*
         QueryParser queryParser = new QueryParser();
         MyRequest myRequest = queryParser.parse(url);
-        queryParser.printRequest(myRequest);
+        queryParser.printRequest(myRequest);*/
 
         MultipartParser multipartParser = new MultipartParser();
         MyMultipartRequest myMultipartRequest = multipartParser.parse(multipartData);
+
+
         multipartParser.printMultipartParserRequest(myMultipartRequest);
 
 

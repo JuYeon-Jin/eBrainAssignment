@@ -30,6 +30,7 @@ public class MultipartParser {
         request.setHttpVersion(httpRequestLine.split(" ")[2]);
 
         // lines[1] 부터 헤더 데이터. 각각 분리해서(파싱) 헤더 Map 에 저장
+        // 헤더 데이터 한줄에 하나가 맞는지 다시 확인(한줄에 데이터 2개일 가능성)
         int lineNum = 1;
         while (!lines.get(lineNum).isEmpty()) {
             String headerLine = lines.get(lineNum);
