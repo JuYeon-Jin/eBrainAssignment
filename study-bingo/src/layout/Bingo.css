@@ -1,0 +1,16 @@
+.bingo-container {
+    display: grid;
+    /*grid-template-columns: repeat(3, 1fr);  1fr 은 가로 전체? */
+    grid-template-columns: repeat(3, 40px); /* 한 줄에 3개 요소 씩 / 한 요소의 가로 길이는 40px */
+}
+
+.bingo-item {
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.active {
+    background-color: red;
+}
