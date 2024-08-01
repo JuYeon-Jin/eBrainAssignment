@@ -5,14 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-// DTO 객체
 public class MyRequest {
-
-    private Map<String, List<String>> parameters;
-
-    public MyRequest() {
-        parameters = new HashMap<>();
-    }
+    private Map<String, List<String>> parameters = new HashMap<>();
 
     /**
      * <p>이 메서드는 주어진 키와 값 쌍을 {@link MyRequest} 객체의 내부 데이터(Map)에 추가합니다.
@@ -23,14 +17,7 @@ public class MyRequest {
      * @param value 파라미터 값
      */
     public void addParam(String key, String value) {
-        List<String> values = parameters.get(key);
-
-        if (values == null) {
-            values = new ArrayList<>();
-            parameters.put(key, values);
-        }
-
-        values.add(value);
+        parameters.computeIfAbsent(key, k -> new ArrayList<>()).add(value);
     }
 
     /**
@@ -57,10 +44,5 @@ public class MyRequest {
      */
     public List<String> getParams(String key) {
         return parameters.get(key);
-    }
-
-    // 결과 확인을 위한 메소드
-    public Map<String, List<String>> getParameters() {
-        return parameters;
     }
 }

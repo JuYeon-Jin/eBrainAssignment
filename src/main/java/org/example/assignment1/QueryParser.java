@@ -1,8 +1,5 @@
 package org.example.assignment1;
 
-import java.util.List;
-import java.util.Map;
-
 public class QueryParser {
 
     /**
@@ -22,27 +19,11 @@ public class QueryParser {
 
             for (String each : eachQuery) {
                 int index = each.indexOf('=');
-                // String key = URLDecoder.decode(each.substring(0, index),"UTF-8");
                 String key = each.substring(0, index);
                 String value = each.substring(index + 1);
                 request.addParam(key, value);
             }
         }
-
         return request;
-    }
-
-    // 결과 확인을 위한 메소드
-    public void printRequest(MyRequest request) {
-        System.out.println("1번 --------------------------------------------------------------------------------------");
-        for (Map.Entry<String, List<String>> entry : request.getParameters().entrySet()) {
-            String key = entry.getKey();
-            List<String> values = entry.getValue();
-            System.out.println("Key: " + key);
-            for (String value : values) {
-                System.out.println("  Value: " + value);
-            }
-        }
-        System.out.println("------------------------------------------------------------------------------------------");
     }
 }
