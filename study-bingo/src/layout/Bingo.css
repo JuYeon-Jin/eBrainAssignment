@@ -1,4 +1,35 @@
-.bingo-container {
+/*
+game-container
+  > controls-container
+    > btn-container
+    > bingo-call-container
+  > bingo-board-container
+    > bingo-board
+      > bingo-item-container
+        > bingo-item
+*/
+.bingo-call-container {
+    display: flex;
+    gap: 6px;
+}
+
+.bingo-call-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid black;
+    border-radius: 13px;
+    height: 26px;
+    width: 26px;
+}
+
+.bingo-board {
+    display: flex;
+    margin: 15px;
+}
+
+.bingo-item-container {
     display: grid;
     /*grid-template-columns: repeat(3, 1fr);  1fr 은 가로 전체? */
     grid-template-columns: repeat(3, 40px); /* 한 줄에 3개 요소 씩 / 한 요소의 가로 길이는 40px */
@@ -12,5 +43,9 @@
 }
 
 .active {
-    background-color: red;
+    background-color: lightgrey;
+}
+
+.bingo {
+    background-color: gold;
 }
